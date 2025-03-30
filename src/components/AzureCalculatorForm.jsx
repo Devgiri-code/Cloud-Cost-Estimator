@@ -1,10 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-
-const inputAnimation = {
-  hover: { y: -2 },
-  focus: { y: -2 }
-};
 
 export default function AzureCalculatorForm({ onCalculate }) {
   const [formData, setFormData] = useState({
@@ -48,130 +42,111 @@ export default function AzureCalculatorForm({ onCalculate }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6" style={{ display: 'grid', gap: '1.5rem' }}>
       {/* Virtual Machines Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-          <span className="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+      <div>
+        <h3 className="section-title" style={{ '--bg-color': 'var(--blue-500)' }}>
           Virtual Machines
         </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <motion.div whileHover="hover">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Number of Instances
-            </label>
-            <motion.input
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+          <div className="form-group">
+            <label className="form-label">Number of Instances</label>
+            <input
               type="number"
               name="vmInstances"
               min="1"
               value={formData.vmInstances}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-200 p-3 focus:ring-2 focus:ring-blue-300 focus:border-blue-500 transition-all bg-white hover:bg-white focus:bg-white text-gray-800 placeholder-gray-400"
-              variants={inputAnimation}
+              className="form-input"
               placeholder="1-100"
             />
-          </motion.div>
+          </div>
 
-          <motion.div whileHover="hover">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              VM Type
-            </label>
-            <motion.select
+          <div className="form-group">
+            <label className="form-label">VM Type</label>
+            <select
               name="vmType"
               value={formData.vmType}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-200 p-3 focus:ring-2 focus:ring-blue-300 focus:border-blue-500 transition-all appearance-none bg-white hover:bg-white focus:bg-white text-gray-800"
-              variants={inputAnimation}
+              className="form-input form-select"
             >
               {vmOptions.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
               ))}
-            </motion.select>
-          </motion.div>
+            </select>
+          </div>
         </div>
       </div>
 
       {/* Storage Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-          <span className="w-3 h-3 bg-purple-500 rounded-full mr-2"></span>
+      <div>
+        <h3 className="section-title" style={{ '--bg-color': 'var(--purple-500)' }}>
           Storage
         </h3>
         
-        <motion.div whileHover="hover">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Storage Size (GB)
-          </label>
-          <motion.input
+        <div className="form-group">
+          <label className="form-label">Storage Size (GB)</label>
+          <input
             type="number"
             name="storageGB"
             min="10"
             value={formData.storageGB}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-200 p-3 focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all bg-white hover:bg-white focus:bg-white text-gray-800 placeholder-gray-400"
-            variants={inputAnimation}
+            className="form-input"
             placeholder="10-1000"
           />
-        </motion.div>
+        </div>
       </div>
 
       {/* Configuration Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-          <span className="w-3 h-3 bg-cyan-500 rounded-full mr-2"></span>
+      <div>
+        <h3 className="section-title" style={{ '--bg-color': 'var(--cyan-500)' }}>
           Configuration
         </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <motion.div whileHover="hover">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Monthly Running Hours
-            </label>
-            <motion.input
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+          <div className="form-group">
+            <label className="form-label">Monthly Running Hours</label>
+            <input
               type="number"
               name="hoursRunning"
               min="1"
               max="744"
               value={formData.hoursRunning}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-200 p-3 focus:ring-2 focus:ring-cyan-300 focus:border-cyan-500 transition-all bg-white hover:bg-white focus:bg-white text-gray-800 placeholder-gray-400"
-              variants={inputAnimation}
+              className="form-input"
               placeholder="1-744"
             />
-          </motion.div>
+          </div>
 
-          <motion.div whileHover="hover">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Azure Region
-            </label>
-            <motion.select
+          <div className="form-group">
+            <label className="form-label">Azure Region</label>
+            <select
               name="region"
               value={formData.region}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-200 p-3 focus:ring-2 focus:ring-cyan-300 focus:border-cyan-500 transition-all appearance-none bg-white hover:bg-white focus:bg-white text-gray-800"
-              variants={inputAnimation}
+              className="form-input form-select"
             >
               {regionOptions.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
               ))}
-            </motion.select>
-          </motion.div>
+            </select>
+          </div>
         </div>
       </div>
 
-      <motion.button
+      <button
         type="submit"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all"
+        className="btn btn-primary"
+        style={{ width: '100%' }}
       >
         Calculate Costs
-      </motion.button>
+      </button>
     </form>
   );
 }
