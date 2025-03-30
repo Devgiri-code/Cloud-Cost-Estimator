@@ -42,34 +42,35 @@ export default function AzureCalculatorForm({ onCalculate }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" style={{ display: 'grid', gap: '1.5rem' }}>
+    <form className="form-container" onSubmit={handleSubmit}>
       {/* Virtual Machines Section */}
-      <div>
-        <h3 className="section-title" style={{ '--bg-color': 'var(--blue-500)' }}>
+      <div className="form-section">
+        <h3 className="section-title">
+          <span className="bullet-point bg-blue-500"></span>
           Virtual Machines
         </h3>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          <div className="form-group">
-            <label className="form-label">Number of Instances</label>
+        <div className="form-grid">
+          <div className="form-field-group">
+            <label className="input-label">Number of Instances</label>
             <input
               type="number"
               name="vmInstances"
               min="1"
               value={formData.vmInstances}
               onChange={handleChange}
-              className="form-input"
+              className="form-input input-field"
               placeholder="1-100"
             />
           </div>
 
-          <div className="form-group">
-            <label className="form-label">VM Type</label>
+          <div className="form-field-group">
+            <label className="input-label">VM Type</label>
             <select
               name="vmType"
               value={formData.vmType}
               onChange={handleChange}
-              className="form-input form-select"
+              className="form-input input-field form-select"
             >
               {vmOptions.map(option => (
                 <option key={option.value} value={option.value}>
@@ -82,34 +83,36 @@ export default function AzureCalculatorForm({ onCalculate }) {
       </div>
 
       {/* Storage Section */}
-      <div>
-        <h3 className="section-title" style={{ '--bg-color': 'var(--purple-500)' }}>
+      <div className="form-section">
+        <h3 className="section-title">
+          <span className="bullet-point bg-purple-500"></span>
           Storage
         </h3>
         
-        <div className="form-group">
-          <label className="form-label">Storage Size (GB)</label>
+        <div className="form-field-group">
+          <label className="input-label">Storage Size (GB)</label>
           <input
             type="number"
             name="storageGB"
             min="10"
             value={formData.storageGB}
             onChange={handleChange}
-            className="form-input"
+            className="form-input input-field"
             placeholder="10-1000"
           />
         </div>
       </div>
 
       {/* Configuration Section */}
-      <div>
-        <h3 className="section-title" style={{ '--bg-color': 'var(--cyan-500)' }}>
+      <div className="form-section">
+        <h3 className="section-title">
+          <span className="bullet-point bg-cyan-500"></span>
           Configuration
         </h3>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          <div className="form-group">
-            <label className="form-label">Monthly Running Hours</label>
+        <div className="form-grid">
+          <div className="form-field-group">
+            <label className="input-label">Monthly Running Hours</label>
             <input
               type="number"
               name="hoursRunning"
@@ -117,18 +120,18 @@ export default function AzureCalculatorForm({ onCalculate }) {
               max="744"
               value={formData.hoursRunning}
               onChange={handleChange}
-              className="form-input"
+              className="form-input input-field"
               placeholder="1-744"
             />
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Azure Region</label>
+          <div className="form-field-group">
+            <label className="input-label">Azure Region</label>
             <select
               name="region"
               value={formData.region}
               onChange={handleChange}
-              className="form-input form-select"
+              className="form-input input-field form-select"
             >
               {regionOptions.map(option => (
                 <option key={option.value} value={option.value}>
@@ -142,8 +145,7 @@ export default function AzureCalculatorForm({ onCalculate }) {
 
       <button
         type="submit"
-        className="btn btn-primary"
-        style={{ width: '100%' }}
+        className="btn-primary w-full"
       >
         Calculate Costs
       </button>

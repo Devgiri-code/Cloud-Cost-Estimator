@@ -8,53 +8,36 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <header className="text-center mb-6">
+      <header className="app-header">
         <h1 className="app-title">Azure Cloud Cost Estimator</h1>
-        <p className="text-gray-500" style={{ maxWidth: '42rem', margin: '0 auto' }}>
-          Accurately predict your monthly Azure infrastructure costs with our interactive calculator
+        <p className="app-subtitle">
+          Accurately predict your monthly Azure infrastructure costs
         </p>
       </header>
 
-      <div className="grid-container">
-        {/* Form Panel */}
-        <div className="animate-slide-left">
-          <div className="card">
-            <div className="card-header">
-              <h2 className="section-title" style={{ color: 'white' }}>Configuration</h2>
-              <p style={{ color: 'rgba(255,255,255,0.8)' }}>Enter your Azure resource details</p>
+      <div className="main-layout">
+        {/* Left Panel - Form */}
+        <div className="form-panel">
+          <div className="form-card">
+            <div className="form-card-header">
+              <h2>Configuration</h2>
+              <p>Enter your Azure resource details</p>
             </div>
-            <div className="card-body">
-              <AzureCalculatorForm onCalculate={setResults} />
-            </div>
+            <AzureCalculatorForm onCalculate={setResults} />
           </div>
         </div>
-        
 
-        {/* Results Panel */}
-        <div className="animate-slide-right">
-          <div className="card">
-            <div className="card-header" style={{ background: 'linear-gradient(to right, var(--purple-600), var(--indigo-500))' }}>
-              <h2 className="section-title" style={{ color: 'white' }}>Cost Analysis</h2>
-              <p style={{ color: 'rgba(255,255,255,0.8)' }}>Your estimated monthly costs</p>
+        {/* Right Panel - Results */}
+        <div className="results-panel">
+          <div className="results-card">
+            <div className="results-card-header">
+              <h2>Cost Analysis</h2>
+              <p>Your estimated monthly costs</p>
             </div>
-            <div className="card-body">
-              <AzureCostResults results={results} />
-            </div>
+            <AzureCostResults results={results} />
           </div>
         </div>
       </div>
-
-      <footer className="text-center mt-6 text-gray-500 text-sm">
-        <p>Tool created with React and CSS</p>
-      </footer>
     </div>
   );
 }
-
-
-
-<div className="smooth-scroll"> {/* Add this wrapper */}
-  {/* Your existing content */}
-</div>
-
-
